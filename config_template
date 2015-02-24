@@ -1,0 +1,33 @@
+#!/bin/bash
+
+###############################################################
+#       GOURCALLY CONFIGURATION FILE
+###############################################################
+
+#svn configuration
+SVN="" #url
+REPOS=() #repositories (space-separated)
+USER="" #username
+PASSWD="" #plaintext password (not very nice)
+
+#working directory
+DATADIR=""
+
+#directory to copy generated videos (for example a network share)
+COPYDIR=""
+
+#gource configuration
+LOGO="" #logo displayed in video
+DEFICON="" #default user icon
+ICONS="" #user icons dir
+SPD="0.1" #seconds per day
+MAXFILES=0 #maximum files displayed (0 = no limit)
+FILEIDLE=0 #how long should files be displayed, when they are not touched by a user (0 = do not remove files)
+USERSCALE="3.5" #scaling of user icons
+HIDE="mouse,progress,dirnames,filenames,usernames" #hide this elements in gource live video rendering
+ASS="0.2" #skip gaps in log file
+BLOOMM="0.5" #radius of the bloom
+BLOOMI="0.4" #intensity of the bloom
+TITLE="Repository: $REPO" #title shown in the video
+DATEFORMAT="%B %Y" #date format shown in the video
+MAXFILELAG="1" #time, in which files must appear

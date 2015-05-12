@@ -28,6 +28,6 @@ HIDE="mouse,progress,dirnames,filenames,usernames" #hide this elements in gource
 ASS="0.2" #skip gaps in log file
 BLOOMM="0.5" #radius of the bloom
 BLOOMI="0.4" #intensity of the bloom
-TITLE="Repository: $REPO" #title shown in the video
+TITLE="Repository: " #title shown in the video (the current repo name will be appended)
 DATEFORMAT="%B %Y" #date format shown in the video
 MAXFILELAG="1" #time, in which files must appear

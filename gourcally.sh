@@ -86,7 +86,8 @@ for i in "${REPOS[@]}"; do
 	LOG="$DATADIR"/"$REPO"/"${REPO}".xml #path to the log file
 	LAST="$DATADIR"/"$REPO"/"${REPO}"_lastrevision #path to the file with the last revison
 	ACTUAL="$DATADIR"/"$REPO"/"${REPO}"_actualrevision #path to the file with the actual revison
-	
+	TITLE="$TITLE $REPO" #append the current repo name to the title
+
 	###############################################################
 	#       CHECKS
 	###############################################################

@@ -86,7 +86,7 @@ for i in "${REPOS[@]}"; do
 	LOG="$DATADIR"/"$REPO"/"${REPO}".xml #path to the log file
 	LAST="$DATADIR"/"$REPO"/"${REPO}"_lastrevision #path to the file with the last revison
 	ACTUAL="$DATADIR"/"$REPO"/"${REPO}"_actualrevision #path to the file with the actual revison
-	TITLE="$TITLE $REPO" #append the current repo name to the title
+	TITLEWITHREPO="$TITLE $REPO" #append the current repo name to the title
 
 	###############################################################
 	#       CHECKS
@@ -148,7 +148,7 @@ for i in "${REPOS[@]}"; do
 		--hide "$HIDE" \
 		--file-idle-time "$FILEIDLE" \
 		--max-file-lag "$MAXFILELAG" \
-		--title "$TITLE" \
+		--title "$TITLEWITHREPO" \
 		--user-image-dir "$ICONS" \
 		--logo "$LOGO" \
 		--default-user-image "$DEFICON" \

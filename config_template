@@ -10,11 +10,14 @@ REPOS=() #repositories (space-separated)
 USER="" #username
 PASSWD="" #plaintext password (not very nice)
 
-#working directory
+#data directory for meta data
 DATADIR=""
 
 #directory to copy generated videos (for example a network share)
 COPYDIR=""
+
+#temp directory (if it's not set here, it uses /tmp as default)
+TEMPDIR="/tmp"
 
 #gource configuration
 LOGO="" #logo displayed in video

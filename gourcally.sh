@@ -54,6 +54,18 @@ if [ ! -e "$COPYDIR" ]; then
 	exit 1
 fi
 
+#check if temp directory isn't set via config file (then use /tmp/) 
+if [ -z "$TEMPDIR" ]; then
+	TEMPDIR="/tmp"
+	echo "Using /tmp as temp directory. If you want to change it, set TEMPDIR in config file."
+#check if the temp directory (set in the config file) exists
+else
+	if [ ! -e "$TEMPDIR" ]; then
+	echo "Temp directory doesn't exist (see config file). Exiting."
+	exit 1
+	fi
+fi
+
 #check if gource, svn and avconv are installed
 if ! command -v gource  >/dev/null; then
 	echo "Please install gource to use this script. Exiting."
@@ -82,7 +94,7 @@ for i in "${REPOS[@]}"; do
 	###############################################################
 	
 	REPO=$i #repository variable
-	VID="$DATADIR"/"$REPO"/"${REPO}".mp4 #path to the video file
+	VID="$TEMPDIR"/"gourcally-temp"/"${REPO}".mp4 #path to the video file
 	LOG="$DATADIR"/"$REPO"/"${REPO}".xml #path to the log file
 	LAST="$DATADIR"/"$REPO"/"${REPO}"_lastrevision #path to the file with the last revison
 	ACTUAL="$DATADIR"/"$REPO"/"${REPO}"_actualrevision #path to the file with the actual revison
@@ -119,6 +131,11 @@ for i in "${REPOS[@]}"; do
 	if [ ! -e "${DATADIR}"/"${REPO}" ]; then
 		mkdir "$DATADIR"/"$REPO"
 	fi
+
+	#if there is no gourcally-temp directory in the temp directory (first run or clean /tmp), create it
+	if [ ! -e "${TEMPDIR}"/"gourcally-temp" ]; then
+		mkdir "$TEMPDIR"/"gourcally-temp"
+	fi
 	
 	#if there is no log file available, download it from svn
 	if [ ! -e "$LOG" ]; then
@@ -126,6 +143,21 @@ for i in "${REPOS[@]}"; do
 		svn log -r 1:HEAD --verbose --xml --quiet --username "$USER" --password "$PASSWD" "$SVN"/"$REPO" > "$LOG" 
 	fi
 	
+	###############################################################
+	#       DEBUGGING
+	###############################################################
+
+	#echo "data dir: $DATADIR"
+	#echo "temp dir: $TEMPDIR"
+	#echo "copy dir: $COPYDIR"
+
+	#echo "REPO: $REPO"
+	#echo "VID: $VID"
+	#echo "LOG: $LOG"
+	#echo "LAST: $LAST"
+	#echo "ACTUAL: $ACTUAL"
+	#echo "TITLE: $TITLE"
+
 	###############################################################
 	#       RENDER VIDEO
 	###############################################################
